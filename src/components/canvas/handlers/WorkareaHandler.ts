@@ -1,8 +1,9 @@
 import { fabric } from 'fabric';
 
 import { Handler } from '.';
-import { WorkareaLayout, WorkareaObject, FabricImage } from '../utils';
+import { FabricImage, WorkareaLayout, WorkareaObject } from '../utils';
 import { VideoObject } from '../objects/Video';
+import { WorkArea } from '../objects';
 
 class WorkareaHandler {
 	handler: Handler;
@@ -22,7 +23,8 @@ class WorkareaHandler {
 		const image = new Image(workareaOption.width, workareaOption.height);
 		image.width = workareaOption.width;
 		image.height = workareaOption.height;
-		this.handler.workarea = new fabric.Image(image, workareaOption) as WorkareaObject;
+		// this.handler.workarea = new fabric.Image(image, workareaOption) as WorkareaObject;
+    this.handler.workarea = new WorkArea(image, workareaOption) as WorkareaObject;
 		this.handler.canvas.add(this.handler.workarea);
 		this.handler.objects = this.handler.getObjects();
 		this.handler.canvas.centerObject(this.handler.workarea);

@@ -13,3 +13,5 @@ export { default as Line } from './Line';
 export { default as CirclePort } from './CirclePort';
 export { default as Cube } from './Cube';
 export { default as Svg } from './Svg';
+export { default as WorkArea } from './WorkArea';
+export { default as Group } from './Group';

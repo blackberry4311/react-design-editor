@@ -2,7 +2,7 @@
     "imagemap": {
         "imagemap": "Image Map",
         "imagemap-editing-confirm": "The image map contents have been modified. Do you want to do that anyway?",
-        "imagemap-editor": "Image Map Editor",
+        "imagemap-editor": "PlotPlan Designer",
         "marker": {
             "choose-icon": "Choose icon from Fontawesome",
             "search-icon": "Search {{length}} icons for..."
@@ -112,13 +112,13 @@
         "crop": "Crop image",
         "crop-save": "Save crop image",
         "crop-cancel": "Cancel crop image",
-        "image-save": "Save Image",
+        "image-save": "Export Image",
         "clone": "Clone",
         "delete": "Delete",
         "save": "Save",
         "back": "Back",
-        "upload": "Upload",
-        "download": "Download",
+        "upload": "Load data",
+        "download": "Save data",
         "ok": "Ok",
         "cancel": "Cancel",
         "search-list": "Search list",
@@ -180,5 +180,8 @@
     "validation": {
         "enter-property": "Please enter {{arg}}.",
         "already-property": "Already exist {{arg}}."
+    },
+    "placeholder": {
+        "search-node": "Search layer"
     }
 }

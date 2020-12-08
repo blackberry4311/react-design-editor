@@ -7,3 +7,5 @@ dist/
 lib/
 .vscode/
 docs/
+.idea
+yarn-error.log

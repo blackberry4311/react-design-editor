@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { fabric } from 'fabric';
 import { v4 } from 'uuid';
 import ResizeObserver from 'resize-observer-polyfill';
 
@@ -11,6 +10,7 @@ import '../../styles/core/canvas.less';
 import '../../styles/core/tooltip.less';
 import '../../styles/core/contextmenu.less';
 import '../../styles/fabricjs/fabricjs.less';
+import { PlotPlanCanvas } from './utils/PlotPlanCanvas';
 
 export type CanvasProps = HandlerOptions & {
 	responsive?: boolean;
@@ -25,7 +25,7 @@ interface IState {
 
 class Canvas extends Component<CanvasProps, IState> {
 	public handler: Handler;
-	public canvas: FabricCanvas;
+	public canvas: FabricCanvas<PlotPlanCanvas>;
 	public container = React.createRef<HTMLDivElement>();
 	private resizeObserver: ResizeObserver;
 	static defaultProps: CanvasProps = {
@@ -52,7 +52,8 @@ class Canvas extends Component<CanvasProps, IState> {
 			height,
 			selection: editable,
 		});
-		this.canvas = new fabric.Canvas(`canvas_${id}`, mergedCanvasOption);
+		// this.canvas = new fabric.Canvas(`canvas_${id}`, mergedCanvasOption);
+    this.canvas = new PlotPlanCanvas(`canvas_${id}`, mergedCanvasOption);
 		this.canvas.setBackgroundColor(mergedCanvasOption.backgroundColor, this.canvas.renderAll.bind(this.canvas));
 		this.canvas.renderAll();
 		this.handler = new Handler({
