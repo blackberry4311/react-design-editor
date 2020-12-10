@@ -97,13 +97,14 @@ class ImageMapEditor extends Component {
   componentDidMount() {
     this.showLoading(true);
     import('./Descriptors.json').then((descriptors) => {
+      const { 'default': x, ...rest } = descriptors;
       this.setState(
         {
-          descriptors,
+          descriptors: rest,
         },
         () => {
           this.showLoading(false);
-        }
+        },
       );
     });
     this.setState({
@@ -573,7 +574,7 @@ class ImageMapEditor extends Component {
 
       const anchorEl = document.createElement('a');
       anchorEl.href = `data:text/json;charset=utf-8,${encodeURIComponent(
-        JSON.stringify({ ...svgPlotPlan, editor_data: editorData }, null, '\t')
+        JSON.stringify({ ...svgPlotPlan, editor_data: editorData }, null, '\t'),
       )}`;
       anchorEl.download = `${this.canvasRef.handler.workarea.name || 'sample'}.json`;
       document.body.appendChild(anchorEl); // required for firefox
