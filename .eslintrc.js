@@ -18,4 +18,9 @@ module.exports = {
     semi: ['error', 'always'],
     quotes: ['error', 'single'],
   },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
 };

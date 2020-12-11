@@ -25,9 +25,10 @@
     ]
   },
   "include": [
-    "src/components/canvas/index.tsx",
+//    "src/components/canvas/index.tsx",
     "src/components/canvas/global.d.ts",
-    "src/components/imagemap/index.tsx"
+//    "src/components/imagemap/index.tsx",
+    "src/containers/index.tsx"
   ],
   "exclude": [
     "node_modules",
