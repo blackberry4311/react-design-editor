@@ -49,16 +49,6 @@ class App extends Component<any, IState> {
           <link rel="shortcut icon" href="./favicon.ico" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosanskr.css" />
           <title>React Design Editor</title>
-          {/*<script async={true} src="https://www.googletagmanager.com/gtag/js?id=UA-97485289-3" />*/}
-          {/*<script>*/}
-          {/*  {`*/}
-          {/*              window.dataLayer = window.dataLayer || [];*/}
-          {/*              function gtag(){dataLayer.push(arguments);}*/}
-          {/*              gtag('js', new Date());*/}
-          {/*              gtag('config', 'UA-97485289-3');*/}
-          {/*              `}*/}
-          {/*</script>*/}
-          {/*<script async={true} src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />*/}
         </Helmet>
         {/* <div className="rde-title"> */}
         {/*	<Title onChangeMenu={this.onChangeMenu} current={activeEditor} /> */}
