@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const copyFiles = require('copy-webpack-plugin');
 
 const pkg = require('./package.json');
 
@@ -11,7 +12,14 @@ const plugins = [
     minimize: true,
   }),
   new MiniCssExtractPlugin(),
+  new copyFiles({
+    patterns: [
+      { from: path.resolve(__dirname, 'src/styles'), to: path.resolve(__dirname, 'lib/styles') },
+      { from: path.resolve(__dirname, 'src/libs'), to: path.resolve(__dirname, 'lib/libs') },
+    ],
+  }),
 ];
+
 module.exports = {
   mode: 'production',
   entry: {
