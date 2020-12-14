@@ -6,6 +6,7 @@ import { LocaleProvider } from 'antd';
 import koKR from 'antd/lib/locale-provider/ko_KR';
 import enUS from 'antd/lib/locale-provider/en_US';
 import { i18nClient } from '../i18n';
+import PropTypes from 'prop-types';
 
 const antResources = {
   ko: koKR,
@@ -20,43 +21,25 @@ interface IState {
 }
 
 class App extends Component<any, IState> {
+  static propTypes = {
+    onSave: PropTypes.func,
+    onUpload: PropTypes.func,
+  };
+
   state: IState = {
     activeEditor: 'imagemap',
   };
 
-  // @ts-ignore
-  onChangeMenu = ({ key }) => {
-    this.setState({
-      activeEditor: key,
-    });
-  };
-
-  // renderEditor = (activeEditor: EditorType) => {
-  //   switch (activeEditor) {
-  //     case 'imagemap':
-  //       return <ImageMapEditor />;
-  //     case 'workflow':
-  //       return <WorkflowEditor />;
-  //     case 'flow':
-  //       return <FlowEditor />;
-  //     case 'hexgrid':
-  //       return <HexGrid />;
-  //   }
-  // };
-
   render() {
-    // const { activeEditor } = this.state;
+    const { onSave, onUpload } = this.props;
     // @ts-ignore
     const locale: any = antResources[i18nClient.language];
     return (
       <LocaleProvider locale={locale}>
         <div className="rde-main">
-          {/* <div className="rde-title"> */}
-          {/*	<Title onChangeMenu={this.onChangeMenu} current={activeEditor} /> */}
-          {/* </div> */}
           <FlowContainer>
             <div className="rde-content">
-              <ImageMapEditor />
+              <ImageMapEditor onSave={onSave} onUpload={onUpload} />
             </div>
           </FlowContainer>
         </div>

@@ -16,6 +16,8 @@ import '../../styles/index.less';
 import Container from '../common/Container';
 import CommonButton from '../common/CommonButton';
 import Canvas from '../canvas/Canvas';
+import { descriptors } from './Descriptors';
+import PropTypes from 'prop-types';
 
 const propertiesToInclude = [
   'id',
@@ -44,273 +46,6 @@ const propertiesToInclude = [
   'svg',
   'loadType',
 ];
-
-const descriptors = {
-  MARKER: [
-    {
-      name: 'Marker',
-      description: '',
-      type: 'marker',
-      icon: {
-        prefix: 'fas',
-        name: 'map-marker-alt',
-      },
-      option: {
-        type: 'i-text',
-        text: '\uf3c5',
-        fontFamily: 'Font Awesome 5 Free',
-        fontWeight: 900,
-        fontSize: 60,
-        width: 30,
-        height: 30,
-        editable: false,
-        name: 'New marker',
-      },
-    },
-  ],
-  TEXT: [
-    {
-      name: 'Text',
-      description: '',
-      type: 'text',
-      icon: {
-        prefix: 'fas',
-        name: 'font',
-      },
-      option: {
-        type: 'textbox',
-        text: '',
-        width: 60,
-        height: 30,
-        fontSize: 32,
-        name: 'New text',
-      },
-    },
-  ],
-  IMAGE: [
-    {
-      name: 'Image',
-      description: '',
-      type: 'image',
-      icon: {
-        prefix: 'fas',
-        name: 'image',
-      },
-      option: {
-        type: 'image',
-        name: 'New image',
-        src: './images/sample/transparentBg.png',
-      },
-    },
-    {
-      name: 'GIF',
-      description: '',
-      type: 'gif',
-      icon: {
-        prefix: 'fas',
-        name: 'image',
-      },
-      option: {
-        type: 'gif',
-        width: 400,
-        height: 400,
-        name: 'New gif',
-        src: '',
-      },
-    },
-  ],
-  SHAPE: [
-    {
-      name: 'Triangle',
-      description: '',
-      type: 'shape',
-      icon: {
-        prefix: 'fas',
-        name: 'play',
-        style: {
-          transform: 'rotate(270deg)',
-        },
-      },
-      option: {
-        type: 'triangle',
-        width: 30,
-        height: 30,
-        name: 'New shape',
-      },
-    },
-    {
-      name: 'Rectangle',
-      description: '',
-      type: 'shape',
-      icon: {
-        prefix: 'fas',
-        name: 'stop',
-      },
-      option: {
-        type: 'rect',
-        width: 40,
-        height: 40,
-        name: 'New shape',
-      },
-    },
-    {
-      name: 'Circle',
-      description: '',
-      type: 'shape',
-      icon: {
-        prefix: 'fas',
-        name: 'circle',
-      },
-      option: {
-        type: 'circle',
-        radius: 30,
-        name: 'New shape',
-      },
-    },
-    {
-      name: 'Cube',
-      description: '',
-      type: 'shape',
-      icon: {
-        prefix: 'fas',
-        name: 'cube',
-      },
-      option: {
-        type: 'cube',
-        width: 80,
-        height: 80,
-        name: 'New shape',
-      },
-    },
-  ],
-  DRAWING: [
-    {
-      name: 'Polygon',
-      description: '',
-      type: 'drawing',
-      icon: {
-        prefix: 'fas',
-        name: 'draw-polygon',
-      },
-      option: {
-        type: 'polygon',
-        name: 'New polygon',
-      },
-    },
-    {
-      name: 'Line',
-      description: '',
-      type: 'drawing',
-      icon: {
-        prefix: 'fas',
-        name: 'minus',
-      },
-      option: {
-        type: 'line',
-        name: 'New line',
-      },
-    },
-    {
-      name: 'Arrow',
-      description: '',
-      type: 'drawing',
-      icon: {
-        prefix: 'fas',
-        name: 'long-arrow-alt-right',
-      },
-      option: {
-        type: 'arrow',
-        name: 'New arrow',
-      },
-    },
-  ],
-  ELEMENT: [
-    {
-      name: 'Chart',
-      description: '',
-      type: 'element',
-      icon: {
-        prefix: 'fas',
-        name: 'chart-line',
-      },
-      option: {
-        superType: 'element',
-        type: 'chart',
-        name: 'New chart',
-        width: 356,
-        height: 356,
-      },
-    },
-    {
-      name: 'Element',
-      description: '',
-      type: 'element',
-      icon: {
-        prefix: 'fab',
-        name: 'html5',
-      },
-      option: {
-        superType: 'element',
-        type: 'element',
-        width: 480,
-        height: 270,
-        name: 'New element',
-      },
-    },
-    {
-      name: 'Iframe',
-      description: '',
-      type: 'element',
-      icon: {
-        prefix: 'fas',
-        name: 'window-maximize',
-      },
-      option: {
-        superType: 'element',
-        type: 'iframe',
-        width: 480,
-        height: 270,
-        name: 'New iframe',
-      },
-    },
-    {
-      name: 'Video',
-      description: '',
-      type: 'element',
-      icon: {
-        prefix: 'fab',
-        name: 'youtube',
-      },
-      option: {
-        superType: 'element',
-        type: 'video',
-        width: 480,
-        height: 270,
-        name: 'New video',
-        autoplay: true,
-        muted: true,
-        loop: true,
-      },
-    },
-  ],
-  SVG: [
-    {
-      name: 'Default',
-      description: '',
-      type: 'default',
-      icon: {
-        prefix: 'fas',
-        name: 'bezier-curve',
-      },
-      option: {
-        type: 'svg',
-        superType: 'svg',
-        name: 'New SVG',
-        loadType: 'svg',
-      },
-    },
-  ],
-};
 
 const defaultOption = {
   fill: 'rgba(0, 0, 0, 1)',
@@ -758,7 +493,7 @@ class ImageMapEditor extends Component {
         progress,
       });
     },
-    onImport: (files) => {
+    onImportFile: (files) => {
       if (files) {
         this.showLoading(true);
         setTimeout(() => {
@@ -799,17 +534,49 @@ class ImageMapEditor extends Component {
         }, 500);
       }
     },
+    onImportData: (data) => {
+      if (data) {
+        const {
+          editor_data: { objects, animations, styles, dataSources },
+        } = data;
+        this.setState({
+          animations,
+          styles,
+          dataSources,
+        });
+        if (objects) {
+          this.canvasRef.handler.clear(true);
+          const data = objects.filter((obj) => {
+            if (!obj.id) {
+              return false;
+            }
+            return true;
+          });
+          this.canvasRef.handler.importJSON(data);
+        }
+      }
+    },
     onUpload: () => {
-      const inputEl = document.createElement('input');
-      inputEl.accept = '.json';
-      inputEl.type = 'file';
-      inputEl.hidden = true;
-      inputEl.onchange = (e) => {
-        this.handlers.onImport(e.target.files);
-      };
-      document.body.appendChild(inputEl); // required for firefox
-      inputEl.click();
-      inputEl.remove();
+      const { onUpload } = this.props;
+      if (onUpload) {
+        //callback onSave to expose data to out side
+        this.showLoading(true);
+        const uploadedData = onUpload();
+        this.handlers.onImportData(uploadedData);
+        this.showLoading(false);
+      } else {
+        // default
+        const inputEl = document.createElement('input');
+        inputEl.accept = '.json';
+        inputEl.type = 'file';
+        inputEl.hidden = true;
+        inputEl.onchange = (e) => {
+          this.handlers.onImportFile(e.target.files);
+        };
+        document.body.appendChild(inputEl); // required for firefox
+        inputEl.click();
+        inputEl.remove();
+      }
     },
     onSave: () => {
       this.showLoading(true);
@@ -828,14 +595,20 @@ class ImageMapEditor extends Component {
         dataSources,
       };
 
-      const anchorEl = document.createElement('a');
-      anchorEl.href = `data:text/json;charset=utf-8,${encodeURIComponent(
-        JSON.stringify({ ...svgPlotPlan, editor_data: editorData }, null, '\t')
-      )}`;
-      anchorEl.download = `${this.canvasRef.handler.workarea.name || 'sample'}.json`;
-      document.body.appendChild(anchorEl); // required for firefox
-      anchorEl.click();
-      anchorEl.remove();
+      const finalData = { ...svgPlotPlan, editor_data: editorData };
+      const { onSave } = this.props;
+      if (onSave) {
+        //callback onSave to expose data to out side
+        onSave(finalData);
+      } else {
+        //fallback to default
+        const anchorEl = document.createElement('a');
+        anchorEl.href = `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(finalData, null, '\t'))}`;
+        anchorEl.download = `${this.canvasRef.handler.workarea.name || 'sample'}.json`;
+        document.body.appendChild(anchorEl); // required for firefox
+        anchorEl.click();
+        anchorEl.remove();
+      }
       this.showLoading(false);
     },
     onChangeAnimations: (animations) => {
@@ -1055,5 +828,10 @@ class ImageMapEditor extends Component {
     return <Container title={title} content={content} loading={loading} className="" />;
   }
 }
+
+ImageMapEditor.propTypes = {
+  onSave: PropTypes.func,
+  onUpload: PropTypes.func,
+};
 
 export default ImageMapEditor;

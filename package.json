@@ -1,6 +1,6 @@
 {
   "name": "plot-plan-designer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Design Editor Tools with React.js + ant.design + fabric.js",
   "main": "dist/plot-plan-designer.min.js",
   "typings": "lib/index.d.ts",
@@ -11,7 +11,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run clean && webpack -p --config webpack.prod.js && typedoc",
-    "build:lib": "npm run tsc && webpack -p --config webpack.lib.js",
+    "build:lib": "npm run clean && npm run tsc && webpack -p --config webpack.lib.js",
     "start": "npm install && npm run start:dev",
     "start:dev": "webpack-dev-server --config webpack.dev.js --inline",
     "ghpages": "npm run build && node scripts/ghpages",
@@ -57,7 +57,6 @@
     "i18next": "^19.0.0",
     "i18next-browser-languagedetector": "^2.2.4",
     "lodash": "^4.17.10",
-    "mediaelement": "^4.2.9",
     "prop-types": "^15.6.2",
     "react": "^16.13.1",
     "react-ace": "^8.1.0",
