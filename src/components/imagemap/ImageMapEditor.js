@@ -560,10 +560,13 @@ class ImageMapEditor extends Component {
       const { onUpload } = this.props;
       if (onUpload) {
         //callback onSave to expose data to out side
-        this.showLoading(true);
-        const uploadedData = onUpload();
-        this.handlers.onImportData(uploadedData);
-        this.showLoading(false);
+        // this.showLoading(true);
+        // const uploadedData = onUpload();
+        // this.handlers.onImportData(uploadedData);
+        // this.showLoading(false);
+
+        // publish these internal state and handler to outside
+        onUpload({ showLoading: this.showLoading, handlers: this.handlers });
       } else {
         // default
         const inputEl = document.createElement('input');
