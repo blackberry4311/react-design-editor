@@ -19,6 +19,7 @@ type EditorType = 'imagemap' | 'workflow' | 'flow' | 'hexgrid';
 
 interface IState {
   activeEditor?: EditorType;
+  editMode?: EditMode;
 }
 
 class App extends Component<any, IState> {
@@ -32,7 +33,14 @@ class App extends Component<any, IState> {
 
   state: IState = {
     activeEditor: 'imagemap',
+    editMode: EditMode.EDITING,
   };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.editMode !== this.props.editMode) {
+      this.setState((old) => ({ ...old, editMode: this.props.editMode }));
+    }
+  }
 
   render() {
     const { onSave, onUpload, editMode, objectOptions, tabsDefinition } = this.props;
