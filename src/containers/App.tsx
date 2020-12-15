@@ -36,9 +36,9 @@ class App extends Component<any, IState> {
     editMode: EditMode.EDITING,
   };
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: any) {
     if (prevProps.editMode !== this.props.editMode) {
-      this.setState((old) => ({ ...old, editMode: this.props.editMode }));
+      this.setState(old => ({ ...old, editMode: this.props.editMode }));
     }
   }
 
@@ -51,8 +51,12 @@ class App extends Component<any, IState> {
         <div className="rde-main">
           <FlowContainer editMode={editMode ?? EditMode.EDITING}>
             <div className="rde-content">
-              <ImageMapEditor onSave={onSave} onUpload={onUpload}
-                              objectOptions={objectOptions} tabsDefinition={tabsDefinition} />
+              <ImageMapEditor
+                onSave={onSave}
+                onUpload={onUpload}
+                objectOptions={objectOptions}
+                tabsDefinition={tabsDefinition}
+              />
             </div>
           </FlowContainer>
         </div>
