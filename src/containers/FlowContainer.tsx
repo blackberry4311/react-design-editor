@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { FlowContext } from '../contexts';
+import { EditMode } from '../contexts/FlowContext';
 
-const FlowContainer: React.FC = (props: React.PropsWithChildren<{}>) => {
-  const { children } = props;
+const FlowContainer: React.FC<{editMode: EditMode}> = (props) => {
+  const { children, editMode: propMode } = props;
   const [selectedFlowNode, setSelectedFlowNode] = useState(null);
+  const [editMode, setEditMode] = useState(propMode)
   return (
     <FlowContext.Provider
       value={{
         selectedFlowNode,
         setSelectedFlowNode,
+        editMode,
+        setEditMode,
       }}
     >
       {children}

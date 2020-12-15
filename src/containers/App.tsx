@@ -7,6 +7,7 @@ import koKR from 'antd/lib/locale-provider/ko_KR';
 import enUS from 'antd/lib/locale-provider/en_US';
 import { i18nClient } from '../i18n';
 import PropTypes from 'prop-types';
+import { EditMode } from '../contexts/FlowContext';
 
 const antResources = {
   ko: koKR,
@@ -24,6 +25,9 @@ class App extends Component<any, IState> {
   static propTypes = {
     onSave: PropTypes.func,
     onUpload: PropTypes.func,
+    editMode: PropTypes.oneOf([EditMode.EDITING, EditMode.LINKING]),
+    objectOptions: PropTypes.object,
+    tabsDefinition: PropTypes.object,
   };
 
   state: IState = {
@@ -31,15 +35,16 @@ class App extends Component<any, IState> {
   };
 
   render() {
-    const { onSave, onUpload } = this.props;
+    const { onSave, onUpload, editMode, objectOptions, tabsDefinition } = this.props;
     // @ts-ignore
     const locale: any = antResources[i18nClient.language];
     return (
       <LocaleProvider locale={locale}>
         <div className="rde-main">
-          <FlowContainer>
+          <FlowContainer editMode={editMode ?? EditMode.EDITING}>
             <div className="rde-content">
-              <ImageMapEditor onSave={onSave} onUpload={onUpload} />
+              <ImageMapEditor onSave={onSave} onUpload={onUpload}
+                              objectOptions={objectOptions} tabsDefinition={tabsDefinition} />
             </div>
           </FlowContainer>
         </div>

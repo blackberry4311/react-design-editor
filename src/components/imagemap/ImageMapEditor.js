@@ -18,6 +18,7 @@ import CommonButton from '../common/CommonButton';
 import Canvas from '../canvas/Canvas';
 import { descriptors } from './Descriptors';
 import PropTypes from 'prop-types';
+import FlowContext, { EditMode } from '../../contexts/FlowContext';
 
 const propertiesToInclude = [
   'id',
@@ -756,13 +757,24 @@ class ImageMapEditor extends Component {
     const title = <ImageMapTitle title={titleContent} action={action} />;
     const content = (
       <div className="rde-editor">
-        <ImageMapItems
-          ref={(c) => {
-            this.itemsRef = c;
+        <FlowContext.Consumer>
+          {(context) => {
+            if (context) {
+              switch (context.editMode) {
+                case EditMode.EDITING:
+                  return <ImageMapItems
+                    ref={(c) => {
+                      this.itemsRef = c;
+                    }}
+                    canvasRef={this.canvasRef}
+                    descriptors={descriptors}
+                  />;
+                default:
+                  return null;
+              }
+            }
           }}
-          canvasRef={this.canvasRef}
-          descriptors={descriptors}
-        />
+        </FlowContext.Consumer>
         <div className="rde-editor-canvas-container">
           <div className="rde-editor-header-toolbar">
             <ImageMapHeaderToolbar canvasRef={this.canvasRef} selectedItem={selectedItem} onSelect={onSelect} />
@@ -780,7 +792,10 @@ class ImageMapEditor extends Component {
               className="rde-canvas"
               minZoom={30}
               maxZoom={500}
-              objectOption={defaultOption}
+              objectOption={{
+                ...defaultOption,
+                ...this.props.objectOptions,
+              }}
               propertiesToInclude={propertiesToInclude}
               onModified={onModified}
               onAdd={onAdd}
@@ -815,6 +830,7 @@ class ImageMapEditor extends Component {
           animations={animations}
           styles={styles}
           dataSources={dataSources}
+          tabsDefinition={this.props.tabsDefinition}
         />
         <ImageMapPreview
           preview={preview}
@@ -832,6 +848,8 @@ class ImageMapEditor extends Component {
 ImageMapEditor.propTypes = {
   onSave: PropTypes.func,
   onUpload: PropTypes.func,
+  objectOptions: PropTypes.object,
+  tabsDefinition: PropTypes.object
 };
 
 export default ImageMapEditor;
