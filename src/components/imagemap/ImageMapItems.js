@@ -225,11 +225,13 @@ class ImageMapItems extends Component {
     },
   };
 
-  renderItems = (items) => (
-    <Flex flexWrap="wrap" flexDirection="column" style={{ width: '100%' }}>
-      {items.map((item) => this.renderItem(item))}
-    </Flex>
-  );
+  renderItems = (items) => {
+    return (
+      <Flex flexWrap="wrap" flexDirection="column" style={{ width: '100%' }}>
+        {items.map((item) => this.renderItem(item))}
+      </Flex>
+    );
+  };
 
   renderItem = (item, centered) =>
     item.type === 'drawing' ? (

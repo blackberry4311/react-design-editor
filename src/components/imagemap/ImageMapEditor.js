@@ -352,7 +352,7 @@ class ImageMapEditor extends Component {
     },
     onTooltip: (ref, target) => {
       const value = Math.random() * 10 + 1;
-      const { animations, styles } = this.state;
+      // const { animations, styles } = this.state;
       // const { code } = target.trigger;
       // const compile = SandBox.compile(code);
       // const result = compile(value, animations, styles, target.userProperty);
@@ -676,7 +676,6 @@ class ImageMapEditor extends Component {
       selectedItem,
       zoomRatio,
       loading,
-      progress,
       animations,
       styles,
       dataSources,
@@ -765,13 +764,15 @@ class ImageMapEditor extends Component {
             if (context) {
               switch (context.editMode) {
                 case EditMode.EDITING:
-                  return <ImageMapItems
-                    ref={(c) => {
-                      this.itemsRef = c;
-                    }}
-                    canvasRef={this.canvasRef}
-                    descriptors={descriptors}
-                  />;
+                  return (
+                    <ImageMapItems
+                      ref={(c) => {
+                        this.itemsRef = c;
+                      }}
+                      canvasRef={this.canvasRef}
+                      descriptors={descriptors}
+                    />
+                  );
                 default:
                   return null;
               }
@@ -852,7 +853,7 @@ ImageMapEditor.propTypes = {
   onSave: PropTypes.func,
   onUpload: PropTypes.func,
   objectOptions: PropTypes.object,
-  tabsDefinition: PropTypes.object
+  tabsDefinition: PropTypes.object,
 };
 
 export default ImageMapEditor;

@@ -1581,7 +1581,7 @@ class Handler implements HandlerOptions {
   public exportData = () => {
     const fabricData = this.exportJSON();
     const svgPlotPlanData = this.plotPlanAdapter.exportPlotPlanData();
-    return { editor_data: fabricData, ...svgPlotPlanData };
+    return { editor_data: fabricData, plotplan_data: svgPlotPlanData };
   };
 
   /**

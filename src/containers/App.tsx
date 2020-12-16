@@ -38,7 +38,7 @@ class App extends Component<any, IState> {
 
   componentDidUpdate(prevProps: any) {
     if (prevProps.editMode !== this.props.editMode) {
-      this.setState(old => ({ ...old, editMode: this.props.editMode }));
+      this.setState({ editMode: this.props.editMode });
     }
   }
 

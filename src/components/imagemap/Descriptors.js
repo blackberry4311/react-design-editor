@@ -88,7 +88,9 @@ export const descriptors = {
         type: 'triangle',
         width: 30,
         height: 30,
-        name: 'New shape',
+        name: 'Triangle',
+        fill: 'rgba(0,0,0,0)',
+        stroke: 'rgb(255,0,0)',
       },
     },
     {
@@ -103,7 +105,9 @@ export const descriptors = {
         type: 'rect',
         width: 40,
         height: 40,
-        name: 'New shape',
+        name: 'Rectangle',
+        fill: 'rgba(0,0,0,0)',
+        stroke: 'rgb(255,0,0)',
       },
     },
     {
@@ -117,7 +121,9 @@ export const descriptors = {
       option: {
         type: 'circle',
         radius: 30,
-        name: 'New shape',
+        name: 'Circle',
+        fill: 'rgba(0,0,0,0)',
+        stroke: 'rgb(255,0,0)',
       },
     },
     {
@@ -132,7 +138,7 @@ export const descriptors = {
         type: 'cube',
         width: 80,
         height: 80,
-        name: 'New shape',
+        name: 'New Cube',
       },
     },
   ],

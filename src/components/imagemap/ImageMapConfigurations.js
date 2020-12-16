@@ -67,8 +67,14 @@ class ImageMapConfigurations extends Component {
           style={{ position: 'absolute', top: 16, right: 16, zIndex: 1000 }}
         />
 
-        <ContextTabs activeKey={activeKey} onChangeTab={onChangeTab} onChange={onChange}
-                     canvasRef={canvasRef} selectedItem={selectedItem} tabsDefinition={tabsDefinition} />
+        <ContextTabs
+          activeKey={activeKey}
+          onChangeTab={onChangeTab}
+          onChange={onChange}
+          canvasRef={canvasRef}
+          selectedItem={selectedItem}
+          tabsDefinition={tabsDefinition}
+        />
         {/*<Tabs.TabPane tab={<Icon name="vine" prefix="fab" />} key="animations">*/}
         {/*  <Animations animations={animations} onChangeAnimations={onChangeAnimations} />*/}
         {/*</Tabs.TabPane>*/}
@@ -87,12 +93,9 @@ const ContextTabs = (props) => {
   const context = useContext(FlowContext);
   const { activeKey, onChangeTab, onChange, canvasRef, selectedItem, tabsDefinition } = props;
   useEffect(() => {
-      if (tabsDefinition && tabsDefinition[context.editMode])
-        onChangeTab(tabsDefinition[context.editMode]?.selectedKey);
-      else
-        onChangeTab('map');
-    }
-    , [context]);
+    if (tabsDefinition && tabsDefinition[context.editMode]) onChangeTab(tabsDefinition[context.editMode]?.selectedKey);
+    else onChangeTab('map');
+  }, [context]);
   return (
     <Tabs
       tabPosition="right"
@@ -101,16 +104,18 @@ const ContextTabs = (props) => {
       onChange={onChangeTab}
       tabBarStyle={{ marginTop: 60 }}
     >
-      {context.editMode === EditMode.EDITING && <Tabs.TabPane active tab={<Icon name="cog" />} key="map">
-        <MapProperties onChange={onChange} canvasRef={canvasRef} />
-      </Tabs.TabPane>}
-      {context.editMode === EditMode.EDITING && <Tabs.TabPane tab={<Icon name="cogs" />} key="node">
-        <NodeProperties onChange={onChange} selectedItem={selectedItem} canvasRef={canvasRef} />
-      </Tabs.TabPane>}
-      {
-        tabsDefinition &&
-        tabsDefinition[context.editMode]?.tabs?.map(tab => tab.create(onChange, selectedItem, canvasRef))
-      }
+      {context.editMode === EditMode.EDITING && (
+        <Tabs.TabPane active tab={<Icon name="cog" />} key="map">
+          <MapProperties onChange={onChange} canvasRef={canvasRef} />
+        </Tabs.TabPane>
+      )}
+      {context.editMode === EditMode.EDITING && (
+        <Tabs.TabPane tab={<Icon name="cogs" />} key="node">
+          <NodeProperties onChange={onChange} selectedItem={selectedItem} canvasRef={canvasRef} />
+        </Tabs.TabPane>
+      )}
+      {tabsDefinition &&
+        tabsDefinition[context.editMode]?.tabs?.map((tab) => tab.create(onChange, selectedItem, canvasRef))}
     </Tabs>
   );
 };
