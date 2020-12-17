@@ -103,6 +103,8 @@ class ImageMapEditor extends Component {
       descriptors,
     });
     this.shortcutHandlers.esc();
+    const { onLinkHandler } = this.props;
+    if (onLinkHandler) onLinkHandler({ handlers: this.handlers, internalLoading: this.showLoading });
   }
 
   canvasHandlers = {
@@ -537,9 +539,7 @@ class ImageMapEditor extends Component {
     },
     onImportData: (data) => {
       if (data) {
-        const {
-          editor_data: { objects, animations, styles, dataSources },
-        } = data;
+        const { objects, animations, styles, dataSources } = data;
         this.setState({
           animations,
           styles,
@@ -558,18 +558,10 @@ class ImageMapEditor extends Component {
       }
     },
     onUpload: () => {
-      const { onUpload } = this.props;
-      if (onUpload) {
-        //callback onSave to expose data to out side
-        // this.showLoading(true);
-        // const uploadedData = onUpload();
-        // this.handlers.onImportData(uploadedData);
-        // this.showLoading(false);
-
-        // publish these internal state and handler to outside
-        onUpload({ showLoading: this.showLoading, handlers: this.handlers });
+      const { onLoad } = this.props;
+      if (onLoad) {
+        onLoad();
       } else {
-        // default
         const inputEl = document.createElement('input');
         inputEl.accept = '.json';
         inputEl.type = 'file';
@@ -582,8 +574,7 @@ class ImageMapEditor extends Component {
         inputEl.remove();
       }
     },
-    onSave: () => {
-      this.showLoading(true);
+    onExportData: () => {
       const svgPlotPlan = this.canvasRef.handler.exportData();
       const objects = svgPlotPlan.editor_data.filter((obj) => {
         if (!obj.id) {
@@ -598,22 +589,23 @@ class ImageMapEditor extends Component {
         styles,
         dataSources,
       };
-
-      const finalData = { ...svgPlotPlan, editor_data: editorData };
+      return { ...svgPlotPlan, editor_data: editorData };
+    },
+    onSave: () => {
       const { onSave } = this.props;
       if (onSave) {
-        //callback onSave to expose data to out side
-        onSave(finalData);
+        onSave();
       } else {
-        //fallback to default
+        this.showLoading(true);
+        const finalData = this.handlers.onExportData();
         const anchorEl = document.createElement('a');
         anchorEl.href = `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(finalData, null, '\t'))}`;
         anchorEl.download = `${this.canvasRef.handler.workarea.name || 'sample'}.json`;
         document.body.appendChild(anchorEl); // required for firefox
         anchorEl.click();
         anchorEl.remove();
+        this.showLoading(false);
       }
-      this.showLoading(false);
     },
     onChangeAnimations: (animations) => {
       if (!this.state.editing) {
@@ -850,8 +842,9 @@ class ImageMapEditor extends Component {
 }
 
 ImageMapEditor.propTypes = {
+  onLinkHandler: PropTypes.func,
+  onLoad: PropTypes.func,
   onSave: PropTypes.func,
-  onUpload: PropTypes.func,
   objectOptions: PropTypes.object,
   tabsDefinition: PropTypes.object,
 };

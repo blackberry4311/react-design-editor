@@ -24,8 +24,9 @@ interface IState {
 
 class App extends Component<any, IState> {
   static propTypes = {
+    onLinkHandler: PropTypes.func,
+    onLoad: PropTypes.func,
     onSave: PropTypes.func,
-    onUpload: PropTypes.func,
     editMode: PropTypes.oneOf([EditMode.EDITING, EditMode.LINKING]),
     objectOptions: PropTypes.object,
     tabsDefinition: PropTypes.object,
@@ -43,7 +44,7 @@ class App extends Component<any, IState> {
   }
 
   render() {
-    const { onSave, onUpload, editMode, objectOptions, tabsDefinition } = this.props;
+    const { onLinkHandler, editMode, objectOptions, tabsDefinition,onLoad,onSave } = this.props;
     // @ts-ignore
     const locale: any = antResources[i18nClient.language];
     return (
@@ -52,10 +53,11 @@ class App extends Component<any, IState> {
           <FlowContainer editMode={editMode ?? EditMode.EDITING}>
             <div className="rde-content">
               <ImageMapEditor
-                onSave={onSave}
-                onUpload={onUpload}
+                onLinkHandler={onLinkHandler}
                 objectOptions={objectOptions}
                 tabsDefinition={tabsDefinition}
+                onLoad={onLoad}
+                onSave={onSave}
               />
             </div>
           </FlowContainer>
