@@ -104,7 +104,8 @@ class ImageMapEditor extends Component {
     });
     this.shortcutHandlers.esc();
     const { onLinkHandler } = this.props;
-    if (onLinkHandler) onLinkHandler({ handlers: this.handlers, internalLoading: this.showLoading });
+    if (onLinkHandler)
+      onLinkHandler({ handlers: this.handlers, internalLoading: this.showLoading, canvasRef: this.canvasRef });
   }
 
   canvasHandlers = {
@@ -575,21 +576,20 @@ class ImageMapEditor extends Component {
       }
     },
     onExportData: () => {
-      const svgPlotPlan = this.canvasRef.handler.exportData();
-      const objects = svgPlotPlan.editor_data.filter((obj) => {
+      const editorData = this.canvasRef.handler.exportJSON();
+      const objects = editorData.filter((obj) => {
         if (!obj.id) {
           return false;
         }
         return true;
       });
       const { animations, styles, dataSources } = this.state;
-      const editorData = {
+      return {
         objects,
         animations,
         styles,
         dataSources,
       };
-      return { ...svgPlotPlan, editor_data: editorData };
     },
     onSave: () => {
       const { onSave } = this.props;
@@ -597,9 +597,9 @@ class ImageMapEditor extends Component {
         onSave();
       } else {
         this.showLoading(true);
-        const finalData = this.handlers.onExportData();
+        const editorData = this.handlers.onExportData();
         const anchorEl = document.createElement('a');
-        anchorEl.href = `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(finalData, null, '\t'))}`;
+        anchorEl.href = `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(editorData, null, '\t'))}`;
         anchorEl.download = `${this.canvasRef.handler.workarea.name || 'sample'}.json`;
         document.body.appendChild(anchorEl); // required for firefox
         anchorEl.click();

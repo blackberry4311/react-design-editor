@@ -48,7 +48,6 @@ import { LinkObject } from '../objects/Link';
 import { PortObject } from '../objects/Port';
 import { LinkOption } from './LinkHandler';
 import { defaults } from '../constants';
-import PlotPlanAdapter from '../adapter/PlotPlanAdapter';
 import { PlotPlanCanvas } from '../utils/PlotPlanCanvas';
 
 export interface HandlerCallback {
@@ -275,7 +274,7 @@ class Handler implements HandlerOptions {
   public drawingHandler: DrawingHandler;
   public shortcutHandler: ShortcutHandler;
 
-  public plotPlanAdapter: PlotPlanAdapter;
+  // public plotPlanAdapter: PlotPlanAdapter;
 
   public objectMap: Record<string, FabricObject> = {};
   public objects: FabricObject[];
@@ -306,7 +305,7 @@ class Handler implements HandlerOptions {
     this.initOption(options);
     this.initCallback(options);
     this.initHandler();
-    this.initAdapter();
+    // this.initAdapter();
   }
 
   /**
@@ -385,9 +384,9 @@ class Handler implements HandlerOptions {
   /**
    * init adapter
    */
-  public initAdapter = () => {
-    this.plotPlanAdapter = new PlotPlanAdapter(this);
-  };
+  // public initAdapter = () => {
+  //   this.plotPlanAdapter = new PlotPlanAdapter(this);
+  // };
 
   /**
    * Get primary object
@@ -1578,11 +1577,11 @@ class Handler implements HandlerOptions {
   /**
    * Export to PlotPlan data
    */
-  public exportData = () => {
-    const fabricData = this.exportJSON();
-    const svgPlotPlanData = this.plotPlanAdapter.exportPlotPlanData();
-    return { editor_data: fabricData, plotplan_data: svgPlotPlanData };
-  };
+  // public exportData = () => {
+  //   const fabricData = this.exportJSON();
+  //   const svgPlotPlanData = this.plotPlanAdapter.exportPlotPlanData();
+  //   return { editor_data: fabricData, plotplan_data: svgPlotPlanData };
+  // };
 
   /**
    * Active selection to group
