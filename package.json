@@ -1,6 +1,6 @@
 {
   "name": "plot-plan-designer",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Design Editor Tools with React.js + ant.design + fabric.js",
   "main": "dist/plot-plan-designer.min.js",
   "typings": "lib/index.d.ts",

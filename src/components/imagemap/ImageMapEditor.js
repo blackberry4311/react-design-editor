@@ -745,7 +745,7 @@ class ImageMapEditor extends Component {
     );
     const titleContent = (
       <React.Fragment>
-        <span>{i18n.t('imagemap.imagemap-editor')}</span>
+        <span>{this.props.editorName ? this.props.editorName : i18n.t('imagemap.imagemap-editor')}</span>
       </React.Fragment>
     );
     const title = <ImageMapTitle title={titleContent} action={action} />;
@@ -847,6 +847,7 @@ ImageMapEditor.propTypes = {
   onSave: PropTypes.func,
   objectOptions: PropTypes.object,
   tabsDefinition: PropTypes.object,
+  editorName: PropTypes.string,
 };
 
 export default ImageMapEditor;

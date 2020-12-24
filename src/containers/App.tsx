@@ -30,6 +30,7 @@ class App extends Component<any, IState> {
     editMode: PropTypes.oneOf([EditMode.EDITING, EditMode.LINKING]),
     objectOptions: PropTypes.object,
     tabsDefinition: PropTypes.object,
+    editorName: PropTypes.string,
   };
 
   state: IState = {
@@ -44,7 +45,7 @@ class App extends Component<any, IState> {
   }
 
   render() {
-    const { onLinkHandler, editMode, objectOptions, tabsDefinition,onLoad,onSave } = this.props;
+    const { onLinkHandler, editMode, objectOptions, tabsDefinition, onLoad, onSave, editorName } = this.props;
     // @ts-ignore
     const locale: any = antResources[i18nClient.language];
     return (
@@ -58,6 +59,7 @@ class App extends Component<any, IState> {
                 tabsDefinition={tabsDefinition}
                 onLoad={onLoad}
                 onSave={onSave}
+                editorName={editorName}
               />
             </div>
           </FlowContainer>
