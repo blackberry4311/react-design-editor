@@ -225,6 +225,10 @@ export interface FabricElement extends FabricObject<fabric.Rect> {
 }
 
 export type WorkareaLayout = 'fixed' | 'responsive' | 'fullscreen';
+export type WorkareaImageOption = {
+  loaded?: boolean;
+  resetScale?: boolean;
+}
 
 export interface WorkareaOption {
   /**

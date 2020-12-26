@@ -1533,7 +1533,7 @@ class Handler implements HandlerOptions {
       prevLeft = workarea.left;
       prevTop = workarea.top;
       this.workarea.set(workarea);
-      await this.workareaHandler.setImage(workarea.src, true);
+      await this.workareaHandler.setImage(workarea.src, { loaded: true });
       this.workarea.setCoords();
     }
     json.forEach((obj: FabricObjectOption) => {

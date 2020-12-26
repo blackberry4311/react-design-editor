@@ -173,7 +173,7 @@ class ImageMapEditor extends Component {
       const changedKey = Object.keys(changedValues)[0];
       const changedValue = changedValues[changedKey];
       if (allValues.workarea) {
-        this.canvasHandlers.onChangeWokarea(changedKey, changedValue, allValues.workarea);
+        this.canvasHandlers.onChangeWorkarea(changedKey, changedValue, allValues.workarea);
         return;
       }
       if (changedKey === 'width' || changedKey === 'height') {
@@ -336,13 +336,13 @@ class ImageMapEditor extends Component {
       }
       this.canvasRef.handler.set(changedKey, changedValue);
     },
-    onChangeWokarea: (changedKey, changedValue, allValues) => {
+    onChangeWorkarea: (changedKey, changedValue, allValues) => {
       if (changedKey === 'layout') {
         this.canvasRef.handler.workareaHandler.setLayout(changedValue);
         return;
       }
       if (changedKey === 'file' || changedKey === 'src') {
-        this.canvasRef.handler.workareaHandler.setImage(changedValue);
+        this.canvasRef.handler.workareaHandler.setImage(changedValue, { resetScale: true });
         return;
       }
       if (changedKey === 'width' || changedKey === 'height') {
@@ -509,9 +509,7 @@ class ImageMapEditor extends Component {
             }
           };
           reader.onload = (e) => {
-            const {
-              editor_data: { objects, animations, styles, dataSources },
-            } = JSON.parse(e.target.result);
+            const { objects, animations, styles, dataSources } = JSON.parse(e.target.result);
             this.setState({
               animations,
               styles,
